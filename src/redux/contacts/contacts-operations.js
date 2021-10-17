@@ -11,7 +11,7 @@ import {
   deleteContactError,
 } from './contacts-actions';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://616ac0c516e7120017fa10a2.mockapi.io/api/v1';
 
 export const fetchContacts = () => async dispatch => {
   dispatch(fetchContactsRequest());
