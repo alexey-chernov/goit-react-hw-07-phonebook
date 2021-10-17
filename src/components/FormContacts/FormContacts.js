@@ -9,7 +9,7 @@ function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleChange = event => {
+  function handleChange(event) {
     const { name, value } = event.target;
 
     switch (name) {
@@ -24,12 +24,19 @@ function ContactForm() {
       default:
         return;
     }
-  };
+  }
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(contactsOperations.addContact(name, number));
-    resetForm();
+    const found = contactsOperations.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+    if (found === undefined) {
+      dispatch(contactsOperations.addContact(name, number));
+      resetForm();
+    } else {
+      alert(`${name} вже присутній у списку контактів`);
+    }
   };
 
   const resetForm = () => {
